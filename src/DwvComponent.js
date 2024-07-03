@@ -264,7 +264,11 @@ class DwvComponent extends React.Component {
     this.setupDropbox(app);
 
     // possible load from location
-    app.loadFromUri(window.location.href);
+    app.loadFromUri('http://arecle.net/0002.DCM');
+    // this.onDirectFile('/Applications/future/radiology-viewer/dwv-radiology-viewer/public/assets/data/abc.DCM');
+    app.loadURLs([
+       'http://arecle.net/0002.DCM'
+     ]);
   }
 
   /**
@@ -448,6 +452,14 @@ class DwvComponent extends React.Component {
     if (event.target && event.target.files) {
       this.state.dwvApp.loadFiles(event.target.files);
     }
+  }
+
+  /**
+   * Handle a an input[type:file] change event.
+   * @param event The event to handle.
+   */
+  onDirectFile = (file) => {
+    this.state.dwvApp.loadFiles(file);    
   }
 
   /**
